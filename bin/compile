@@ -72,21 +72,16 @@ if [ ! -d .maven ]; then
   echo " done"
 fi
 
-ZINC_URL="http://downloads.typesafe.com/zinc/0.3.0/zinc-0.3.0.tgz"
+PHANTOM_JS_URL = "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-i686.tar.bz2"
 
-if [ ! -d .zinc ]; then
-  echo -n "-----> Installing Zinc..."
-  curl --silent --max-time 60 --location $ZINC_URL | tar xz
-  mv zinc-0.3.0 .zinc
-  mkdir -p .zinc/cache
-  chmod +x .zinc/bin/zinc
+if [ ! -d .phantojs ]; then
+  echo -n "-----> Installing phantomjs...."
+  curl --silent --max-time 60 --location $PHANTOM_JS_URL | tar xz
+  mv phantomjs-1.9.8-linux-i686 .phantomjs
+  chmod +x .phantomjs/bin/phantomjs
   echo " done"
 fi
-
-ZINC_START_CMD="$CACHE_DIR/.zinc/bin/zinc -d $CACHE_DIR/.zinc/cache -start"
-ZINC_SHUTDOWN_CMD="$CACHE_DIR/.zinc/bin/zinc -shutdown"
-
-#$ZINC_START_CMD
+export phantomjs.binary.path="$CACHE_DIR/.phantomjs/bin/phantomjs"
 
 MAVEN_SETTINGS_URL="http://s3.amazonaws.com/heroku-jvm-langpack-java/settings.xml"
 
