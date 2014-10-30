@@ -72,7 +72,7 @@ if [ ! -d .maven ]; then
   echo " done"
 fi
 
-PHANTOM_JS_URL = "https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-i686.tar.bz2"
+PHANTOM_JS_URL="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-i686.tar.bz2"
 
 if [ ! -d .phantojs ]; then
   echo -n "-----> Installing phantomjs...."
@@ -142,8 +142,6 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   echo " !     Failed to build app with Maven"
   exit 1
 fi
-
-#$ZINC_SHUTDOWN_CMD
 
 # finalize cache
 if [ "false" == $KEEP_M2_CACHE ]; then
