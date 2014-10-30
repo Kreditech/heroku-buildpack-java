@@ -74,14 +74,15 @@ fi
 
 PHANTOM_JS_URL="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-i686.tar.bz2"
 
-if [ ! -d .phantojs ]; then
+if [ ! -d .phantomjs ]; then
   echo -n "-----> Installing phantomjs...."
   curl --silent --max-time 60 --location $PHANTOM_JS_URL | tar xj
   mv phantomjs-1.9.8-linux-i686 .phantomjs
   chmod +x .phantomjs/bin/phantomjs
   echo " done"
 fi
-export phantomjs.binary.path="$CACHE_DIR/.phantomjs/bin/phantomjs"
+phantomjs.binary.path="$CACHE_DIR/.phantomjs/bin/phantomjs"
+export phantomjs.binary.path
 
 MAVEN_SETTINGS_URL="http://s3.amazonaws.com/heroku-jvm-langpack-java/settings.xml"
 
