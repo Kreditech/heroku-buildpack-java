@@ -51,6 +51,15 @@ export PATH="$BUILD_DIR/vendor/node/bin:$PATH"
 
 ### Finish Install NodeJs
 
+### Start install phantomjs
+PHANTOM_JS_URL="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-i686.tar.bz2"
+echo -n "-----> Installing phantomjs...."
+curl --silent --max-time 60 --location $PHANTOM_JS_URL | tar xj
+mv phantomjs-1.9.8-linux-i686 /app/phantomjs
+chmod +x /app/phantomjs/bin/*
+echo " done"
+### End install phantomjs
+
 # install JDK 
 javaVersion=$(detect_java_version ${BUILD_DIR})
 echo -n "-----> Installing OpenJDK ${javaVersion}..."
@@ -71,22 +80,6 @@ if [ ! -d .maven ]; then
   chmod +x .maven/bin/mvn
   echo " done"
 fi
-
-ZINC_URL="http://downloads.typesafe.com/zinc/0.3.0/zinc-0.3.0.tgz"
-
-if [ ! -d .zinc ]; then
-  echo -n "-----> Installing Zinc..."
-  curl --silent --max-time 60 --location $ZINC_URL | tar xz
-  mv zinc-0.3.0 .zinc
-  mkdir -p .zinc/cache
-  chmod +x .zinc/bin/zinc
-  echo " done"
-fi
-
-ZINC_START_CMD="$CACHE_DIR/.zinc/bin/zinc -d $CACHE_DIR/.zinc/cache -start"
-ZINC_SHUTDOWN_CMD="$CACHE_DIR/.zinc/bin/zinc -shutdown"
-
-#$ZINC_START_CMD
 
 MAVEN_SETTINGS_URL="http://s3.amazonaws.com/heroku-jvm-langpack-java/settings.xml"
 
@@ -149,8 +142,6 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   echo " !     Failed to build app with Maven"
   exit 1
 fi
-
-#$ZINC_SHUTDOWN_CMD
 
 # finalize cache
 if [ "false" == $KEEP_M2_CACHE ]; then
