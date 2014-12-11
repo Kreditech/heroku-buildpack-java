@@ -7,17 +7,17 @@
      <server>
         <id>kredito-nexus-releases</id>
         <username>reader</username>
-        <password>$NEXUS_READER_PWD</password>
+        <password>${env.NEXUS_READER_PWD}</password>
      </server>
        <server>
         <id>kredito-nexus-snapshots</id>
         <username>reader</username>
-        <password>$NEXUS_READER_PWD</password>
+        <password>${env.NEXUS_READER_PWD}</password>
      </server>
        <server>
         <id>kredito-nexus-3rd-party</id>
         <username>reader</username>
-        <password>$NEXUS_READER_PWD</password>
+        <password>${env.NEXUS_READER_PWD}</password>
      </server>
      
   </servers>
