@@ -81,7 +81,7 @@ if [ ! -d .maven ]; then
   echo " done"
 fi
 
-MAVEN_SETTINGS_URL="https://raw.githubusercontent.com/kredito/heroku-buildpack-java/master/opt/settings.xml"
+MAVEN_SETTINGS_URL="https://raw.githubusercontent.com/kredito/heroku-buildpack-java/nexus_auth/opt/settings.xml"
 
 echo -n "-----> Installing settings.xml..."
 if [ -f .m2/settings.xml ]; then
