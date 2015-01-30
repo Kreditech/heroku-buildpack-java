@@ -71,7 +71,7 @@ echo " done"
 cd $CACHE_DIR
 
 # install maven with base repository
-MAVEN_URL="http://www.us.apache.org/dist/maven/maven-3/3.2.1/binaries/apache-maven-3.2.1-bin.tar.gz"
+MAVEN_URL="http://archive.apache.org/dist/maven/maven-3/3.2.1/binaries/apache-maven-3.2.1-bin.tar.gz"
 
 if [ ! -d .maven ]; then
   echo -n "-----> Installing Maven 3.2.1..."
