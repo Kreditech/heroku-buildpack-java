@@ -53,7 +53,7 @@ export PATH="$BUILD_DIR/vendor/node/bin:$PATH"
 
 ### Start install phantomjs
 PHANTOM_JS_URL="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2"
-echo -n "-----> Installing phantomjs...."
+echo "-----> Installing phantomjs...."
 curl --silent --max-time 60 --location $PHANTOM_JS_URL | tar xjf - -C $BUILD_DIR
 mv $BUILD_DIR/phantomjs-1.9.8-linux-x86_64 $BUILD_DIR/vendor/phantomjs
 chmod +x $BUILD_DIR/vendor/phantomjs/bin/*
@@ -67,8 +67,26 @@ install_java ${BUILD_DIR} ${javaVersion}
 jdk_overlay ${BUILD_DIR}
 echo " done"
 
+
 # change to cache dir to install maven
 cd $CACHE_DIR
+
+# Install and start zinc 
+ZINC_URL="http://downloads.typesafe.com/zinc/0.3.7/zinc-0.3.7.tgz"
+
+if [ ! -d .zinc ]; then
+  echo -n "-----> Installing Zinc..."
+  curl --silent --max-time 60 --location $ZINC_URL | tar xz
+  mv zinc-0.3.7 .zinc
+  mkdir -p .zinc/cache
+  chmod +x -R .zinc/bin/*
+  echo " done"
+fi
+
+ZINC_START_CMD=".zinc/bin/zinc -d .zinc/cache -nailed -start"
+$ZINC_START_CMD
+### end of install and start zinc
+
 
 # install maven with base repository
 MAVEN_URL="http://archive.apache.org/dist/maven/maven-3/3.2.1/binaries/apache-maven-3.2.1-bin.tar.gz"
