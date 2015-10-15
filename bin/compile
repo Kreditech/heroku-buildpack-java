@@ -13,7 +13,7 @@ CACHE_DIR=$2
 ENV_DIR=$3
 LOGGER_FLAGS=""
 
-curl --silent --location location https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz | tar xz
+curl --silent --location location https://www.dropbox.com/s/1lr5r7hew5jehet/jvm_commons.tgz | tar xz
 . bin/java
 
 KEEP_M2_CACHE="true"
