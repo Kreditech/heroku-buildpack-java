@@ -52,7 +52,7 @@ export PATH="$BUILD_DIR/vendor/node/bin:$PATH"
 ### Finish Install NodeJs
 
 ### Start install phantomjs
-PHANTOM_JS_URL="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2"
+PHANTOM_JS_URL="https://s3.amazonaws.com/roman-heroku/phantomjs-1.9.8-linux-x86_64.tar.bz2"
 echo "-----> Installing phantomjs...."
 curl --silent --max-time 60 --location $PHANTOM_JS_URL | tar xjf - -C $BUILD_DIR
 mv $BUILD_DIR/phantomjs-1.9.8-linux-x86_64 $BUILD_DIR/vendor/phantomjs
