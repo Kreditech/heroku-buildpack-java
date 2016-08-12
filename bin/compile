@@ -66,6 +66,8 @@ install_java_with_overlay ${BUILD_DIR}
 #create the cache dir if it doesn't exist
 mkdir -p $CACHE_DIR
 
+MAVEN_SETTINGS_URL="https://raw.githubusercontent.com/kredito/heroku-buildpack-java/nexus_auth/opt/settings.xml"
+
 # change to cache dir to install maven
 cd $CACHE_DIR
 install_maven ${CACHE_DIR} ${BUILD_DIR}
@@ -84,7 +86,6 @@ else
   unset MAVEN_SETTINGS_OPT
 fi
 
-MAVEN_SETTINGS_URL="https://raw.githubusercontent.com/kredito/heroku-buildpack-java/nexus_auth/opt/settings.xml"
 export NEXUS_READER_PWD=$(cat $ENV_DIR/NEXUS_READER_PWD)
 echo -n "-----> Installing settings.xml..."
 if [ -f .m2/settings.xml ]; then
