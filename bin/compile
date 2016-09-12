@@ -66,7 +66,7 @@ install_java_with_overlay ${BUILD_DIR}
 #create the cache dir if it doesn't exist
 mkdir -p $CACHE_DIR
 
-MAVEN_SETTINGS_URL="https://raw.githubusercontent.com/kredito/heroku-buildpack-java/nexus_auth/opt/settings.xml"
+MAVEN_SETTINGS_URL="https://raw.githubusercontent.com/Kreditech/heroku-buildpack-java/master/opt/settings.xml"
 
 # change to cache dir to install maven
 cd $CACHE_DIR
