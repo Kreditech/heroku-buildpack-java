@@ -38,6 +38,15 @@ chmod +x $BUILD_DIR/vendor/phantomjs/bin/*
 echo " done"
 ### End install phantomjs
 
+
+JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz}
+mkdir -p /tmp/jvm-common
+curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --strip-components=1
+. /tmp/jvm-common/bin/util
+. /tmp/jvm-common/bin/java
+. /tmp/jvm-common/opt/jdbc.sh
+install_java_with_overlay ${BUILD_DIR}
+
 ### Install and start zinc
 ZINC_URL="http://downloads.typesafe.com/zinc/0.3.7/zinc-0.3.7.tgz"
 
@@ -50,18 +59,9 @@ if [ ! -d .zinc ]; then
   echo " done"
 fi
 
-ZINC_START_CMD=".zinc/bin/zinc -d .zinc/cache -nailed -start"
+ZINC_START_CMD=".zinc/bin/zinc -d .zinc/cache -java_home -nailed -start"
 $ZINC_START_CMD
 ### end of install and start zinc
-
-
-JVM_COMMON_BUILDPACK=${JVM_COMMON_BUILDPACK:-https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/jvm-common.tgz}
-mkdir -p /tmp/jvm-common
-curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-common --strip-components=1
-. /tmp/jvm-common/bin/util
-. /tmp/jvm-common/bin/java
-. /tmp/jvm-common/opt/jdbc.sh
-install_java_with_overlay ${BUILD_DIR}
 
 #create the cache dir if it doesn't exist
 mkdir -p $CACHE_DIR
