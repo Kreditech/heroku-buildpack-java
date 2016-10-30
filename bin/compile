@@ -54,7 +54,7 @@ ZINC_URL="http://downloads.typesafe.com/zinc/0.3.11/zinc-0.3.11.tgz"
 if [ ! -d .zinc ]; then
   echo -n "-----> Installing Zinc..."
   curl --silent --max-time 60 --location $ZINC_URL | tar xz
-  mv zinc-0.3.7 .zinc
+  mv zinc-0.3.11 .zinc
   mkdir -p .zinc/cache
   chmod +x -R .zinc/bin/*
   echo " done"
