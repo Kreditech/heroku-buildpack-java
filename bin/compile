@@ -48,7 +48,8 @@ curl --retry 3 --silent --location $JVM_COMMON_BUILDPACK | tar xzm -C /tmp/jvm-c
 install_java_with_overlay ${BUILD_DIR}
 
 ### Install and start zinc
-ZINC_URL="http://downloads.typesafe.com/zinc/0.3.7/zinc-0.3.7.tgz"
+ZINC_URL="http://downloads.typesafe.com/zinc/0.3.11/zinc-0.3.11.tgz"
+
 
 if [ ! -d .zinc ]; then
   echo -n "-----> Installing Zinc..."
