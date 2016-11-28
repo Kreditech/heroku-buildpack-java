@@ -32,7 +32,7 @@ export PATH="$BUILD_DIR/vendor/node/bin:$PATH"
 ### Start install phantomjs
 PHANTOM_JS_URL="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-x86_64.tar.bz2"
 echo "-----> Installing phantomjs...."
-curl --silent --max-time 150 --location $PHANTOM_JS_URL | tar xjf - -C $BUILD_DIR
+curl --silent --max-time 300 --location $PHANTOM_JS_URL | tar xjf - -C $BUILD_DIR
 mv $BUILD_DIR/phantomjs-1.9.8-linux-x86_64 $BUILD_DIR/vendor/phantomjs
 chmod +x $BUILD_DIR/vendor/phantomjs/bin/*
 echo " done"
@@ -122,7 +122,6 @@ if [ -f $ENV_DIR/DATABASE_URL ] && [ -f db/pom.xml ]; then # This buildback can 
 
     echo "------> listing dirs:"
     ls $BUILD_DIR
-
     UPDATE_SQL_FILE=$BUILD_DIR/db/target/liquibase/migrate.sql
     if grep -m 1 -q ^\\s\*\\w\\+ "$UPDATE_SQL_FILE"; then
         echo "-------> DB misses following updates - aborting deploy:"
